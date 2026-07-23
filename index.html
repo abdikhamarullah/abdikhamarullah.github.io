@@ -1,267 +1,813 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdi Khamarullah - IT Support Specialist</title>
+    <title>Abdi Khamarullah — IT Support Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0f172a; /* Navy Blue Gelap */
-            --accent-color: #3b82f6; /* Biru Terang */
-            --text-color: #334155;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
+            --bg:        #080c14;
+            --surface:   #0d1423;
+            --surface-2: #121c30;
+            --border:    rgba(96,165,250,0.1);
+            --blue:      #3b82f6;
+            --blue-dim:  rgba(59,130,246,0.12);
+            --cyan:      #22d3ee;
+            --white:     #f1f5f9;
+            --muted:     #64748b;
+            --muted-2:   #94a3b8;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-light);
-        }
-
-        /* Header / Hero Section */
-        header {
-            background-color: var(--primary-color);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
             color: var(--white);
-            padding: 4rem 2rem;
-            text-align: center;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        /* ── NOISE TEXTURE ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
         }
 
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 1.5rem auto;
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 3rem;
+            background: rgba(8,12,20,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 0.8rem 1.5rem;
+        .nav-logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--cyan);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted-2);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
+            transition: color 0.2s;
         }
 
-        .btn:hover {
-            background-color: #2563eb;
+        .nav-links a:hover { color: var(--white); }
+
+        /* ── HERO ── */
+        header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 3rem 4rem;
+            overflow: hidden;
         }
 
-        /* Container */
-        .container {
-            max-width: 1000px;
+        /* Glow orbs */
+        header::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+            top: -100px; left: -100px;
+            pointer-events: none;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%);
+            bottom: 0; right: 10%;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem;
+            width: 100%;
         }
 
-        /* Sections */
-        section {
-            margin-bottom: 3rem;
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
-            display: inline-block;
+        .hero-eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--cyan);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        /* Experience Items */
-        .job-item {
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 1rem;
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--cyan);
         }
 
-        .job-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-color);
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            margin-bottom: 1.5rem;
         }
 
-        .company {
-            font-style: italic;
-            color: #64748b;
-            margin-bottom: 0.5rem;
+        h1 .accent {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(59,130,246,0.5);
         }
 
-        .job-desc ul {
-            list-style-position: inside;
-            margin-top: 0.5rem;
+        .hero-desc {
+            font-size: 1rem;
+            color: var(--muted-2);
+            max-width: 480px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
         }
 
-        /* Skills Grid */
-        .skills-grid {
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 0;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 600px;
+            background: var(--surface);
+        }
+
+        .stat {
+            flex: 1;
+            padding: 1.25rem 1.5rem;
+            border-right: 1px solid var(--border);
+            position: relative;
+        }
+
+        .stat:last-child { border-right: none; }
+
+        .stat-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .cta-row { display: flex; gap: 1rem; align-items: center; }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--blue);
+            color: #fff;
+            padding: 0.8rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted-2);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .btn-ghost:hover { color: var(--white); }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--muted), transparent);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ── MAIN CONTENT ── */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem 6rem;
+        }
+
+        /* ── SECTION HEADER ── */
+        .sec-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .sec-num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--blue);
+            opacity: 0.6;
+            min-width: 2rem;
+        }
+
+        .sec-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .sec-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        section { margin-bottom: 6rem; }
+
+        /* ── SKILLS ── */
+        .skills-categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1rem;
         }
 
-        .skill-tag {
-            background-color: #e2e8f0;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            text-align: center;
-            font-weight: 500;
-            color: var(--primary-color);
+        .skill-group {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: border-color 0.2s;
         }
 
-        /* Contact Info */
-        .contact-info {
-            text-align: center;
-        }
-        
-        .contact-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
+        .skill-group:hover { border-color: rgba(59,130,246,0.3); }
+
+        .skill-group-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--cyan);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--primary-color);
+        .skill-group-label::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .skill-item {
+            font-size: 0.85rem;
+            color: var(--muted-2);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .skill-item::before {
+            content: '';
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: var(--blue);
+            flex-shrink: 0;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline { position: relative; padding-left: 1.5rem; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 8px; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--blue) 0%, transparent 100%);
+        }
+
+        .job {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -5px; top: 8px;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--blue);
+        }
+
+        .job-meta {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
             color: var(--white);
-            margin-top: 2rem;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .container { padding: 1rem; }
+        .job-period {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--blue);
+            padding: 0.2rem 0.6rem;
+            background: var(--blue-dim);
+            border-radius: 4px;
+        }
+
+        .job-company {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .job-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .job-points li {
+            font-size: 0.875rem;
+            color: var(--muted-2);
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .job-points li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-size: 0.7rem;
+            top: 0.2rem;
+        }
+
+        .job-points li strong { color: var(--white); font-weight: 600; }
+
+        /* ── EDUCATION ── */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .edu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .edu-card:hover { border-color: rgba(59,130,246,0.3); }
+
+        .edu-icon {
+            width: 36px; height: 36px;
+            background: var(--blue-dim);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-school {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        /* ── CONTACT ── */
+        .contact-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-wrap::before {
+            content: '';
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+            top: -100px; right: -50px;
+            pointer-events: none;
+        }
+
+        .contact-wrap h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-wrap p {
+            color: var(--muted-2);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--blue-dim);
+            border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .contact-email:hover {
+            background: var(--blue);
+            color: #fff;
+            border-color: var(--blue);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .footer-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #22c55e;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .status-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            header { padding: 7rem 1.5rem 4rem; }
+            main { padding: 0 1.5rem 4rem; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .stats { flex-wrap: wrap; }
+            .stat { min-width: 45%; }
+            .cta-row { flex-wrap: wrap; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Hero Section -->
+    <nav>
+        <div class="nav-logo">abdi.khamarullah</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
     <header>
-        <h1>Abdi Khamarullah</h1>
-        <p>IT Support Specialist | Network & Security Infrastructure</p>
-        <p style="font-size: 0.9rem;">Sole IT Operator with 10+ Years of Experience Managing End-to-End IT Operations</p>
-        <br>
-        <a href="mailto:abdi.khamarullah@gmail.com" class="btn">Hubungi Saya</a>
+        <div class="hero-inner">
+            <div class="hero-eyebrow">IT Support Specialist</div>
+            <h1>
+                Abdi
+                <span class="accent">Khamarullah</span>
+            </h1>
+            <p class="hero-desc">
+                Sole IT operator with 10+ years managing end-to-end infrastructure — 
+                networks, servers, CCTV, and everything in between. Independently. Reliably.
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-num">10+</span>
+                    <span class="stat-label">Years</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">12</span>
+                    <span class="stat-label">Departments</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">18</span>
+                    <span class="stat-label">CCTV Units</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">70+</span>
+                    <span class="stat-label">IT Assets</span>
+                </div>
+            </div>
+
+            <div class="cta-row">
+                <a href="mailto:abdi.khamarullah@gmail.com" class="btn-primary">
+                    ✉ Get In Touch
+                </a>
+                <a href="#experience" class="btn-ghost">
+                    View Experience →
+                </a>
+            </div>
+        </div>
+        <div class="scroll-hint">scroll</div>
     </header>
 
-    <div class="container">
-        
-        <!-- About Me -->
+    <main>
+
+        <!-- About -->
         <section id="about">
-            <h2>Tentang Saya</h2>
-            <p>Profesional IT dengan pengalaman lebih dari 10 tahun dalam dukungan teknis, infrastruktur jaringan, troubleshooting hardware, dan pemeliharaan sistem. Berpengalaman mengelola operasi IT dari ujung ke ujung secara mandiri sebagai spesialis IT tunggal, termasuk manajemen LAN/WAN, konfigurasi CCTV, dan dukungan peralatan multimedia.</p>
-            <br>
-            <p>Mampu menjadi satu-satunya titik kontak (Single Point of Contact) untuk semua kebutuhan IT antar departemen, dengan disiplin dokumentasi dan manajemen aset yang kuat.</p>
+            <div class="sec-header">
+                <span class="sec-num">01</span>
+                <h2 class="sec-title">About</h2>
+                <div class="sec-line"></div>
+            </div>
+            <p style="color:var(--muted-2); max-width:640px; font-size:0.95rem; line-height:1.9;">
+                IT professional with over 10 years of hands-on experience in technical support, 
+                network infrastructure, hardware troubleshooting, and system maintenance. 
+                Proven ability to manage end-to-end IT operations independently as the sole IT specialist, 
+                serving as the single point of contact for all departments — from helpdesk to server administration.
+            </p>
         </section>
 
-        <!-- Technical Skills -->
+        <!-- Skills -->
         <section id="skills">
-            <h2>Keahlian Teknis</h2>
-            <div class="skills-grid">
-                <div class="skill-tag">Network Installation (LAN/WAN)</div>
-                <div class="skill-tag">Hardware Troubleshooting</div>
-                <div class="skill-tag">CCTV Installation & Config</div>
-                <div class="skill-tag">Windows Server 2019</div>
-                <div class="skill-tag">Mikrotik RouterOS</div>
-                <div class="skill-tag">IT Asset Management</div>
-                <div class="skill-tag">WLAN Deployment</div>
-                <div class="skill-tag">Remote Support (TeamViewer)</div>
-                <div class="skill-tag">Basic Network Security</div>
-                <div class="skill-tag">Microsoft Office & Google Sheets</div>
+            <div class="sec-header">
+                <span class="sec-num">02</span>
+                <h2 class="sec-title">Technical Skills</h2>
+                <div class="sec-line"></div>
+            </div>
+            <div class="skills-categories">
+                <div class="skill-group">
+                    <div class="skill-group-label">Networking</div>
+                    <div class="skill-list">
+                        <div class="skill-item">LAN / WAN / WLAN</div>
+                        <div class="skill-item">Mikrotik RouterOS</div>
+                        <div class="skill-item">Basic Network Security</div>
+                        <div class="skill-item">Firewall & Access Control</div>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-label">Systems</div>
+                    <div class="skill-list">
+                        <div class="skill-item">Windows Server 2019</div>
+                        <div class="skill-item">Windows (All Versions)</div>
+                        <div class="skill-item">File Server & Credential Mgmt</div>
+                        <div class="skill-item">Software Installation & Maintenance</div>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-label">Hardware & Security</div>
+                    <div class="skill-list">
+                        <div class="skill-item">CCTV Installation & Config</div>
+                        <div class="skill-item">IP Camera Systems</div>
+                        <div class="skill-item">Hardware Troubleshooting</div>
+                        <div class="skill-item">IT Asset Management</div>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-label">Support & Tools</div>
+                    <div class="skill-list">
+                        <div class="skill-item">TeamViewer & AnyViewer</div>
+                        <div class="skill-item">Remote Desktop Support</div>
+                        <div class="skill-item">Microsoft Office</div>
+                        <div class="skill-item">Google Workspace</div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Professional Experience -->
+        <!-- Experience -->
         <section id="experience">
-            <h2>Pengalaman Kerja</h2>
-
-            <div class="job-item">
-                <div class="job-title">IT Generalist Staff</div>
-                <div class="company">PT Pasific Asia Packaging | 2016 - Mei 2026</div>
-                <div class="job-desc">
-                    <ul>
-                        <li>Mengelola infrastruktur IT untuk <strong>50+ endpoint</strong> (PC, Printer, Network Devices) di 2 lokasi pabrik secara mandiri, memastikan uptime jaringan >99%.</li>
-                        <li>Melakukan instalasi, konfigurasi, dan troubleshooting end-to-end, mengurangi rata-rata downtime sebesar 10%.</li>
-                        <li>Mendeploy <strong>Windows Server 2019</strong> sebagai file server terpusat, mengelola kredensial akses untuk 11 departemen dan 20 pengguna.</li>
-                        <li>Merancang dan memelihara sistem keamanan CCTV komprehensif dengan <strong>18 kamera</strong>, memastikan penyimpanan rekaman aman dan akses remote 24/7.</li>
-                        <li>Mengelola inventaris aset IT untuk <strong>70+ unit peralatan</strong>, memastikan dokumentasi akurat 100% dan penjadwalan perawatan tepat waktu.</li>
-                        <li>Berperan sebagai single point of contact untuk semua masalah IT, memberikan dukungan remote dengan rata-rata waktu resolusi di bawah 2 jam.</li>
-                        <li>Mengonfigurasi dan mengoptimalkan infrastruktur WLAN di seluruh fasilitas, mendukung konektivitas stabil untuk <strong>50+ perangkat nirkabel</strong> setiap hari.</li>
-                    </ul>
-                </div>
+            <div class="sec-header">
+                <span class="sec-num">03</span>
+                <h2 class="sec-title">Experience</h2>
+                <div class="sec-line"></div>
             </div>
+            <div class="timeline">
 
-            <div class="job-item">
-                <div class="job-title">Production Supervisor</div>
-                <div class="company">PT Mandiri Mitra Muhibbah | 2015 - 2016</div>
-                <div class="job-desc">
-                    <ul>
-                        <li>Supervisi dan persiapan produksi airframe UAV (M3LSU03) untuk lisensi Kementerian Pertahanan.</li>
-                        <li>Memimpin tim produksi untuk memenuhi tenggat waktu proyek di bawah standar kualitas yang ketat.</li>
+                <div class="job">
+                    <div class="job-meta">
+                        <div class="job-title">IT Generalist Staff</div>
+                        <div class="job-period">2016 — May 2026</div>
+                    </div>
+                    <div class="job-company">PT Pasific Asia Packaging</div>
+                    <ul class="job-points">
+                        <li>Managed IT infrastructure for <strong>50+ endpoints</strong> across 2 factory locations independently, maintaining network uptime >99%.</li>
+                        <li>Deployed <strong>Windows Server 2019</strong> as centralized file server with department-based access credentials for 11 departments and 20 users.</li>
+                        <li>Designed and maintained comprehensive CCTV system with <strong>18 cameras</strong>, ensuring secure recording storage and 24/7 remote access.</li>
+                        <li>Managed IT asset inventory of <strong>70+ equipment units</strong> with accurate documentation and timely maintenance scheduling.</li>
+                        <li>Served as single point of contact for all IT issues across departments, averaging <strong>under 2-hour resolution time</strong> via remote support.</li>
+                        <li>Configured and optimized Mikrotik RouterOS and WLAN infrastructure supporting <strong>50+ wireless devices</strong> daily.</li>
                     </ul>
                 </div>
-            </div>
 
-            <div class="job-item">
-                <div class="job-title">Frequency Licensing Administrator</div>
-                <div class="company">Indosat, Tbk | 2007 - 2013</div>
-                <div class="job-desc">
-                    <ul>
-                        <li>Mengelola pendaftaran lisensi frekuensi GSM dan Microwave (Izin Stasiun Radio).</li>
-                        <li>Menjaga Database Program Alchemy untuk dokumen ISR.</li>
-                        <li>Menghitung dan memantau Biaya Lisensi Frekuensi dan Biaya Penggunaan Bandwidth.</li>
+                <div class="job">
+                    <div class="job-meta">
+                        <div class="job-title">Production Supervisor</div>
+                        <div class="job-period">2015 — 2016</div>
+                    </div>
+                    <div class="job-company">PT Mandiri Mitra Muhibbah</div>
+                    <ul class="job-points">
+                        <li>Supervised UAV airframe production (M3LSU03) for Ministry of Defence licensing.</li>
+                        <li>Led production team to meet project deadlines under strict quality standards.</li>
                     </ul>
                 </div>
+
+                <div class="job">
+                    <div class="job-meta">
+                        <div class="job-title">Frequency Licensing Administrator</div>
+                        <div class="job-period">2007 — 2013</div>
+                    </div>
+                    <div class="job-company">Indosat, Tbk</div>
+                    <ul class="job-points">
+                        <li>Managed GSM and Microwave Frequency License registration (Izin Stasiun Radio).</li>
+                        <li>Maintained Alchemy Program Database for ISR documents.</li>
+                        <li>Calculated and monitored Frequency License Fees and Band Usage Costs.</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
         <!-- Education -->
         <section id="education">
-            <h2>Pendidikan</h2>
-            <div class="job-item" style="border-left: none; padding-left: 0;">
-                <div class="job-title">Diploma 3 - Teknik Telekomunikasi</div>
-                <div class="company">Politeknik Negeri Jakarta | 2003 - 2006</div>
+            <div class="sec-header">
+                <span class="sec-num">04</span>
+                <h2 class="sec-title">Education</h2>
+                <div class="sec-line"></div>
             </div>
-            <div class="job-item" style="border-left: none; padding-left: 0;">
-                <div class="job-title">Teknik Audio & Video</div>
-                <div class="company">SMK Negeri 2 Bogor | 2000 - 2003</div>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-icon">🎓</div>
+                    <div class="edu-degree">Diploma 3 — Telecommunication Engineering</div>
+                    <div class="edu-school">Politeknik Negeri Jakarta &nbsp;·&nbsp; 2003 – 2006</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-icon">🏫</div>
+                    <div class="edu-degree">Audio & Video Engineering</div>
+                    <div class="edu-school">SMK Negeri 2 Bogor &nbsp;·&nbsp; 2000 – 2003</div>
+                </div>
             </div>
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="contact-info">
-            <h2>Kontak</h2>
-            <p>Siap untuk diskusi lebih lanjut mengenai kebutuhan IT infrastruktur Anda.</p>
-            <br>
-            <div class="contact-links">
-                <p>📧 <a href="mailto:abdi.khamarullah@gmail.com">abdi.khamarullah@gmail.com</a></p>
+        <section id="contact">
+            <div class="sec-header">
+                <span class="sec-num">05</span>
+                <h2 class="sec-title">Contact</h2>
+                <div class="sec-line"></div>
+            </div>
+            <div class="contact-wrap">
+                <h3>Let's Work Together</h3>
+                <p>Open to full-time IT Support roles across Jabodetabek area.</p>
+                <a href="mailto:abdi.khamarullah@gmail.com" class="contact-email">
+                    ✉ abdi.khamarullah@gmail.com
+                </a>
             </div>
         </section>
 
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; 2026 Abdi Khamarullah. Built with Simplicity.</p>
+        <p>© 2026 Abdi Khamarullah</p>
+        <div class="footer-status">
+            <div class="status-dot"></div>
+            Available for hire
+        </div>
     </footer>
 
 </body>
