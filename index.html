@@ -86,6 +86,8 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             padding: 8rem 3rem 4rem;
             overflow: hidden;
         }
@@ -128,10 +130,19 @@
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.75rem;
         }
 
         .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--cyan);
+        }
+
+        .hero-eyebrow::after {
             content: '';
             display: block;
             width: 32px;
@@ -151,15 +162,17 @@
 
         h1 .accent {
             display: block;
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(59,130,246,0.5);
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-desc {
             font-size: 1rem;
             color: var(--muted-2);
             max-width: 480px;
-            margin-bottom: 3rem;
+            margin: 0 auto 3rem;
             line-height: 1.8;
         }
 
@@ -167,7 +180,7 @@
         .stats {
             display: flex;
             gap: 0;
-            margin-bottom: 3rem;
+            margin: 0 auto 3rem;
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
@@ -202,7 +215,7 @@
             display: block;
         }
 
-        .cta-row { display: flex; gap: 1rem; align-items: center; }
+        .cta-row { display: flex; gap: 1rem; align-items: center; justify-content: center; }
 
         .btn-primary {
             display: inline-flex;
@@ -594,7 +607,7 @@
 <body>
 
     <nav>
-        <div class="nav-logo">abdi.khamarullah</div>
+        <div class="nav-logo">AKM</div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
