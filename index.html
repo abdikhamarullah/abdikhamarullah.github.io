@@ -374,28 +374,12 @@
         /* ── TIMELINE ── */
         .timeline { position: relative; padding-left: 0; }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 8px; bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, var(--blue) 0%, transparent 100%);
-        }
+        .timeline::before { display: none; }
 
         .job {
             position: relative;
             margin-bottom: 3rem;
-            padding-left: 2rem;
-        }
-
-        .job::before {
-            content: '';
-            position: absolute;
-            left: -5px; top: 8px;
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--bg);
-            border: 2px solid var(--blue);
+            padding-left: 0;
         }
 
         .job-meta {
@@ -669,7 +653,7 @@
                 <div class="sec-line"></div>
             </div>
             <div>
-                <p style="color:var(--muted-2); max-width:640px; font-size:0.95rem; line-height:1.9; text-align:justify;">
+                <p style="color:var(--muted-2); font-size:0.95rem; line-height:1.9; text-align:justify;">
                     IT professional with over 10 years of hands-on experience in technical support, 
                     network infrastructure, hardware troubleshooting, and system maintenance. 
                     Proven ability to manage end-to-end IT operations independently as the sole IT specialist, 
