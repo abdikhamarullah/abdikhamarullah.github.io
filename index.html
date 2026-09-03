@@ -835,6 +835,79 @@
         }
 
         /* ========================================
+           FEATURED WORK
+           ======================================== */
+        .work-showcase {
+            display: block;
+            max-width: 320px;
+            margin: 0 auto;
+            text-decoration: none;
+        }
+
+        .work-thumb {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .work-thumb img {
+            width: 100%;
+            display: block;
+            filter: saturate(0.95) brightness(0.96);
+            transition: filter 0.4s ease;
+        }
+
+        .work-showcase:hover .work-thumb {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .work-showcase:hover .work-thumb img {
+            filter: saturate(1) brightness(1);
+        }
+
+        .work-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(9, 9, 11, 0.55);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+            padding-left: 3px;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .work-showcase:hover .work-play {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .work-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ========================================
            EDUCATION
            ======================================== */
         .edu-grid {
@@ -1057,6 +1130,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#featured-work">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
@@ -1234,10 +1308,10 @@
                         <img src="images/banner_landpage.jpg" alt="TrioPenasaran — Aardman-style claymation characters, a Leptogramm project" loading="lazy">
                     </div>
                     <ul class="timeline-desc">
-                        <li>Built an AI-generated animation channel from scratch — handling concept, character design, and full production using <strong>Google Flow (Veo)</strong> and <strong>Filmora</strong>, reaching 900+ subscribers.</li>
+                        <li>Built an AI-generated animation channel from scratch — handling concept, character design, and full production using <strong>Google Flow (Veo)</strong> and <strong>Filmora</strong>, reaching 100+ subscribers.</li>
                         <li>Created a documented content framework (<strong>Channel DNA</strong>) standardizing script, character, and production guidelines for consistent output.</li>
                         <li>Produced short-form content (<strong>Hook-Explain-Punchline</strong> format) distributed across YouTube Shorts, TikTok, Instagram Reels, and Threads.</li>
-                        <li>Single video reached <strong>2M+ views on Instagram</strong> and <strong>1.2M+ on TikTok</strong>, with <strong>94–99% algorithmic discovery</strong> rate, driving 1K+ new followers on TikTok alone.</li>
+                        <li>Single video reached <strong>2M+ views on Instagram</strong> and <strong>1.2M+ on TikTok</strong>, with <strong>94–99% algorithmic discovery</strong> rate, driving 1.4K+ new followers on TikTok alone.</li>
                     </ul>
                 </div>
             </div>
@@ -1294,10 +1368,29 @@
         </div>
     </section>
 
+    <!-- ==================== FEATURED WORK ==================== -->
+    <section class="section" id="featured-work">
+        <div class="section-header reveal">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Featured Work</h2>
+            <div class="section-divider"></div>
+        </div>
+        <a class="work-showcase reveal" href="https://www.instagram.com/p/DYvw5n5M5vP/" target="_blank" rel="noopener noreferrer" aria-label="Watch Sering Pletekin Jari on Instagram">
+            <div class="work-thumb">
+                <img src="images/pletekinjari.jpg" alt="First frame of TrioPenasaran's video, Sering Pletekin Jari" loading="lazy">
+                <span class="work-play" aria-hidden="true">▶</span>
+            </div>
+            <div class="work-stats">
+                <span>2M+ views</span>
+                <span>99.2% reach from non-followers</span>
+            </div>
+        </a>
+    </section>
+
     <!-- ==================== EDUCATION ==================== -->
     <section class="section" id="education">
         <div class="section-header reveal">
-            <span class="section-number">04</span>
+            <span class="section-number">05</span>
             <h2 class="section-title">Education</h2>
             <div class="section-divider"></div>
         </div>
@@ -1320,7 +1413,7 @@
     <!-- ==================== CONTACT ==================== -->
     <section class="section contact-section" id="contact">
         <div class="section-header reveal">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Contact</h2>
             <div class="section-divider"></div>
         </div>
