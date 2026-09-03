@@ -839,10 +839,22 @@
            ======================================== */
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            max-width: 760px;
-            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .work-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+                margin: 0 auto;
+            }
         }
 
         .work-item {
@@ -1404,16 +1416,7 @@
                     <span>99.6% reach from non-followers</span>
                 </div>
             </a>
-        <a class="work-item reveal" href="https://www.instagram.com/reel/DYlXVzMp1SS/" target="_blank" rel="noopener noreferrer" aria-label="Watch Kuku Panjang, Ada Penghuninya on Instagram">
-                <div class="work-thumb">
-                    <img src="images/merinding.jpg" alt="First frame of TrioPenasaran's video, Kamu Pernah Merinding Tiba-Tiba" loading="lazy">
-                    <span class="work-play" aria-hidden="true">▶</span>
-                </div>
-                <div class="work-stats">
-                    <span>99.1% reach from non-followers</span>
-                </div>
-            </a>
-		</div>
+        </div>
     </section>
 
     <!-- ==================== EDUCATION ==================== -->
