@@ -770,6 +770,47 @@
             margin-bottom: 1.25rem;
         }
 
+        .timeline-thumb {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-thumb img {
+            width: 100%;
+            display: block;
+            filter: saturate(0.92) brightness(0.94);
+        }
+
+        .timeline-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(9, 9, 11, 0.15) 0%,
+                transparent 30%,
+                transparent 70%,
+                rgba(9, 9, 11, 0.55) 100%
+            ),
+            linear-gradient(90deg, rgba(9, 9, 11, 0.35) 0%, transparent 15%, transparent 85%, rgba(9, 9, 11, 0.35) 100%);
+            pointer-events: none;
+        }
+
+        [data-theme="light"] .timeline-thumb::after {
+            background: linear-gradient(
+                180deg,
+                rgba(9, 9, 11, 0.05) 0%,
+                transparent 30%,
+                transparent 70%,
+                rgba(9, 9, 11, 0.25) 100%
+            ),
+            linear-gradient(90deg, rgba(9, 9, 11, 0.15) 0%, transparent 15%, transparent 85%, rgba(9, 9, 11, 0.15) 100%);
+        }
+
         .timeline-desc {
             list-style: none;
             display: flex;
@@ -1189,6 +1230,9 @@
                         <span class="timeline-date">Apr 2026 — Present</span>
                     </div>
                     <div class="timeline-company">TrioPenasaran (Independent Project) · Leptogramm</div>
+                    <div class="timeline-thumb">
+                        <img src="images/banner_landpage.png" alt="TrioPenasaran — Aardman-style claymation characters, a Leptogramm project" loading="lazy">
+                    </div>
                     <ul class="timeline-desc">
                         <li>Built an AI-generated animation channel from scratch — handling concept, character design, and full production using <strong>Google Flow (Veo)</strong> and <strong>Filmora</strong>, reaching 100+ subscribers.</li>
                         <li>Created a documented content framework (<strong>Channel DNA</strong>) standardizing script, character, and production guidelines for consistent output.</li>
